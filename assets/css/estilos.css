@@ -144,9 +144,9 @@ button:focus-visible {
 
 .alf-marca {
     font-family: "Rajdhani", sans-serif;
-    font-weight: 700;
-    font-size: 1.35rem;
-    letter-spacing: 0.5px;
+    font-weight: 600;
+    font-size: 1.75rem;
+    letter-spacing: 1.5px;
     color: #fff;
 }
 
@@ -155,7 +155,7 @@ button:focus-visible {
 }
 
 .alf-hero {
-    padding: 6rem 0 5rem;
+    padding: 3rem 1rem;
     background:
         radial-gradient(700px 340px at 50% -60px, rgba(var(--alf-azul-rgb), 0.3), transparent 70%),
         linear-gradient(180deg, var(--alf-fondo-2), var(--alf-fondo));

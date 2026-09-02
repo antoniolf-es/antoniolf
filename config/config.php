@@ -24,5 +24,5 @@ $rutaBase = rtrim(str_replace('\\', '/', dirname($_SERVER['SCRIPT_NAME'] ?? '/')
 define('SITE_NAME', 'AntonioLF');
 define('BASE_URL', $esquema . '://' . $servidor . $rutaBase);
 define('RUTA_BASE', $rutaBase);
-define('GITHUB_URL', 'https://github.com/brolin79');
+define('GITHUB_URL', 'https://github.com/antoniolf-es');
 define('LINKEDIN_URL', 'http://es.linkedin.com/pub/antonio-lopez-fernandez/49/956/39a');

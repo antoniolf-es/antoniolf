@@ -7,11 +7,8 @@
             </p>
             <ul class="list-unstyled alf-datos-contacto mt-4">
                 <li class="mb-3">
-                    <i class="bi bi-envelope-fill alf-azul me-2"></i>contacto@antoniolf.es
-                </li>
-                <li class="mb-3">
                     <i class="bi bi-github alf-azul me-2"></i>
-                    <a href="<?= GITHUB_URL ?>" target="_blank" rel="noopener">github.com/brolin79</a>
+                    <a href="<?= GITHUB_URL ?>" target="_blank" rel="noopener">github.com/antoniolf-es</a>
                 </li>
                 <li class="mb-3">
                     <i class="bi bi-linkedin alf-azul me-2"></i>

@@ -6,11 +6,8 @@
             <div class="col-lg-4">
                 <a class="alf-marca d-inline-flex align-items-center gap-2" href="<?= url('/') ?>">
                     <img src="<?= url('/assets/img/logo.svg') ?>" alt="Logotipo de AntonioLF" width="26" height="26">
-                    <span>Antonio<span class="alf-azul">LF</span></span>
+                    <span>ANTONIO<span class="alf-azul">LF</span></span>
                 </a>
-                <p class="text-secondary small mb-0 mt-2">
-                    Portfolio y blog de un desarrollador web que aún disfruta escribiendo PHP a mano.
-                </p>
             </div>
             <div class="col-lg-4">
                 <ul class="list-inline mb-0 text-center small">
@@ -33,10 +30,6 @@
                     <i class="bi bi-linkedin fs-5"></i>
                 </a>
             </div>
-        </div>
-        <div class="alf-footer-base d-flex justify-content-between flex-wrap gap-2 small text-secondary mt-4 pt-3">
-            <span>&copy; <?= date('Y') ?> Antonio LF</span>
-            <span>Hecho a mano con PHP + Bootstrap</span>
         </div>
     </div>
 </footer>

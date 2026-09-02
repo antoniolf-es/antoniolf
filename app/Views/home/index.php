@@ -1,10 +1,9 @@
 <section class="alf-hero text-center">
     <div class="container">
-        <p class="alf-saludo text-uppercase fw-bold mb-2">Desarrollador web · Portfolio + Blog</p>
-        <h1 class="alf-titulo-hero mb-3">Hola, soy <span class="alf-azul">Antonio</span></h1>
+        <p class="alf-saludo text-uppercase fw-bold mb-2">Desarrollador web · Portfolio · Blog</p>
         <p class="lead text-secondary mx-auto mb-4" style="max-width: 640px;">
-            Construyo webs y aplicaciones a mano con PHP, MariaDB y JavaScript.
-            Sin frameworks de por medio, controlando cada línea.
+            Desarrollador web que aún disfruta escribiendo PHP a mano.<br>
+            Aquí encontrarás mi portfolio, artículos de programación y contenidos relacionados con el desarrollo web.
         </p>
         <div class="d-flex gap-3 justify-content-center flex-wrap mb-4">
             <a class="btn btn-primary btn-lg alf-btn px-4" href="<?= url('/portafolio') ?>">
@@ -17,10 +16,10 @@
         <ul class="alf-chips list-inline mb-0">
             <li class="list-inline-item">PHP</li>
             <li class="list-inline-item">MariaDB</li>
-            <li class="list-inline-item">JavaScript</li>
             <li class="list-inline-item">jQuery</li>
-            <li class="list-inline-item">Bootstrap</li>
             <li class="list-inline-item">Laravel</li>
+            <li class="list-inline-item">Python</li>
+            <li class="list-inline-item">React</li>
         </ul>
     </div>
 </section>

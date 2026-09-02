@@ -20,7 +20,7 @@
     <div class="container">
         <a class="navbar-brand alf-marca d-flex align-items-center gap-2" href="<?= url('/') ?>">
             <img src="<?= url('/assets/img/logo.svg') ?>" alt="Logotipo de AntonioLF" width="34" height="34">
-            <span>Antonio<span class="alf-azul">LF</span></span>
+            <span>ANTONIO<span class="alf-azul">LF</span></span>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuPrincipal" aria-controls="menuPrincipal" aria-expanded="false" aria-label="Abrir menú">
             <span class="navbar-toggler-icon"></span>
@@ -49,11 +49,6 @@
                 <li class="nav-item">
                     <a class="nav-link alf-icono" href="<?= LINKEDIN_URL ?>" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn">
                         <i class="bi bi-linkedin fs-5"></i>
-                    </a>
-                </li>
-                <li class="nav-item ms-lg-2">
-                    <a class="btn btn-outline-primary btn-sm alf-btn-login fw-semibold" href="<?= url('/admin') ?>">
-                        <i class="bi bi-box-arrow-in-right me-1"></i>Login
                     </a>
                 </li>
             </ul>
