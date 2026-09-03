@@ -134,6 +134,19 @@ button:focus-visible {
     color: var(--alf-azul-claro);
 }
 
+.alf-icono-menu {
+    margin-right: 0.35rem;
+    font-size: 0.95rem;
+    opacity: 0.75;
+    transition: opacity 0.15s ease;
+}
+
+.alf-nav .nav-link:hover .alf-icono-menu,
+.alf-nav .nav-link:focus-visible .alf-icono-menu,
+.alf-nav .nav-link.active .alf-icono-menu {
+    opacity: 1;
+}
+
 .alf-icono {
     color: var(--alf-texto-suave);
 }

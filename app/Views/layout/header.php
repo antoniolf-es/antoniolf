@@ -28,16 +28,24 @@
         <div class="collapse navbar-collapse" id="menuPrincipal">
             <ul class="navbar-nav mx-lg-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link fw-semibold<?= enlace_activo('/') ?>" href="<?= url('/') ?>">Inicio</a>
+                    <a class="nav-link fw-semibold<?= enlace_activo('/') ?>" href="<?= url('/') ?>">
+                        <i class="bi bi-house-door alf-icono-menu"></i>Inicio
+                    </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link fw-semibold<?= enlace_activo('/blog', '/blog') ?>" href="<?= url('/blog') ?>">Blog</a>
+                    <a class="nav-link fw-semibold<?= enlace_activo('/blog', '/blog') ?>" href="<?= url('/blog') ?>">
+                        <i class="bi bi-journal-text alf-icono-menu"></i>Blog
+                    </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link fw-semibold<?= enlace_activo('/portafolio', '/portafolio') ?>" href="<?= url('/portafolio') ?>">Portafolio</a>
+                    <a class="nav-link fw-semibold<?= enlace_activo('/portafolio', '/portafolio') ?>" href="<?= url('/portafolio') ?>">
+                        <i class="bi bi-collection alf-icono-menu"></i>Portafolio
+                    </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link fw-semibold<?= enlace_activo('/contacto', '/contacto') ?>" href="<?= url('/contacto') ?>">Contacto</a>
+                    <a class="nav-link fw-semibold<?= enlace_activo('/contacto', '/contacto') ?>" href="<?= url('/contacto') ?>">
+                        <i class="bi bi-envelope alf-icono-menu"></i>Contacto
+                    </a>
                 </li>
             </ul>
             <ul class="navbar-nav flex-row gap-1 align-items-center">

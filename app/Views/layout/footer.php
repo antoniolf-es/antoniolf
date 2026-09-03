@@ -18,8 +18,6 @@
                     <li class="list-inline-item"><a href="<?= url('/portafolio') ?>">Portafolio</a></li>
                     <li class="list-inline-item">·</li>
                     <li class="list-inline-item"><a href="<?= url('/contacto') ?>">Contacto</a></li>
-                    <li class="list-inline-item">·</li>
-                    <li class="list-inline-item"><a href="<?= url('/admin') ?>">Login</a></li>
                 </ul>
             </div>
             <div class="col-lg-4 text-lg-end">
