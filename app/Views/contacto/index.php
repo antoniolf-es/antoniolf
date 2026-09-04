@@ -66,7 +66,7 @@
                             <i class="bi bi-send me-2"></i>Enviar mensaje
                         </button>
                         <p class="text-secondary small mt-3 mb-0">
-                            Este formulario está protegido con reCAPTCHA de Google.
+                            Formulario protegido con Google reCAPTCHA.
                         </p>
                     </div>
                 </div>

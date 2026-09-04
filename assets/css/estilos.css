@@ -202,8 +202,8 @@ button:focus-visible {
 }
 
 .alf-chips img {
-    width: 0.85rem;
-    height: 0.85rem;
+    width: 1rem;
+    height: 1rem;
     margin-right: 0.3rem;
     vertical-align: -0.1rem;
 }
@@ -309,8 +309,8 @@ a.alf-badge:hover {
 }
 
 .alf-tech img {
-    width: 0.85rem;
-    height: 0.85rem;
+    width: 1rem;
+    height: 1rem;
     margin-right: 0.25rem;
     vertical-align: -0.1rem;
 }

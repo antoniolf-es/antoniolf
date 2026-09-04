@@ -35,5 +35,5 @@ define('RECAPTCHA_V3_SECRET_KEY', env('RECAPTCHA_V3_SECRET_KEY'));
 // MAILJET
 define('MAILJET_API', env('MAILJET_API'));
 define('MAILJET_SECRET', env('MAILJET_SECRET'));
-define('MAILJET_REMITE', 'antoniolf.dev@gmail.com');
-define('MAILJET_DESTINO', 'brolin79@gmail.com');
+define('MAILJET_REMITE', env('MAILJET_REMITE'));
+define('MAILJET_DESTINO', env('MAILJET_DESTINO'));
