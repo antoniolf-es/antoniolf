@@ -14,12 +14,12 @@
             </a>
         </div>
         <ul class="alf-chips list-inline mb-0">
-            <li class="list-inline-item">PHP</li>
-            <li class="list-inline-item">MariaDB</li>
-            <li class="list-inline-item">jQuery</li>
-            <li class="list-inline-item">Laravel</li>
-            <li class="list-inline-item">Python</li>
-            <li class="list-inline-item">React</li>
+            <li class="list-inline-item"><img src="<?= url('/img/tech/php.svg') ?>" alt="">PHP</li>
+            <li class="list-inline-item"><img src="<?= url('/img/tech/mysql.svg') ?>" alt="">Mysql</li>
+            <li class="list-inline-item"><img src="<?= url('/img/tech/jquery.svg') ?>" alt="">jQuery</li>
+            <li class="list-inline-item"><img src="<?= url('/img/tech/bootstrap.svg') ?>" alt="">Bootstrap</li>
+            <li class="list-inline-item"><img src="<?= url('/img/tech/python.svg') ?>" alt="">Python</li>
+            <li class="list-inline-item"><img src="<?= url('/img/tech/react.svg') ?>" alt="">React</li>
         </ul>
     </div>
 </section>

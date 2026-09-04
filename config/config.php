@@ -21,8 +21,19 @@ $esquema = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' 
 $servidor = $_SERVER['HTTP_HOST'] ?? 'localhost';
 $rutaBase = rtrim(str_replace('\\', '/', dirname($_SERVER['SCRIPT_NAME'] ?? '/')), '/');
 
+// WEB
 define('SITE_NAME', 'AntonioLF');
 define('BASE_URL', $esquema . '://' . $servidor . $rutaBase);
 define('RUTA_BASE', $rutaBase);
 define('GITHUB_URL', 'https://github.com/antoniolf-es');
 define('LINKEDIN_URL', 'http://es.linkedin.com/pub/antonio-lopez-fernandez/49/956/39a');
+
+// RECAPTCHA
+define('RECAPTCHA_V3_SITE_KEY', env('RECAPTCHA_V3_SITE_KEY'));
+define('RECAPTCHA_V3_SECRET_KEY', env('RECAPTCHA_V3_SECRET_KEY'));
+
+// MAILJET
+define('MAILJET_API', env('MAILJET_API'));
+define('MAILJET_SECRET', env('MAILJET_SECRET'));
+define('MAILJET_REMITE', 'antoniolf.dev@gmail.com');
+define('MAILJET_DESTINO', 'brolin79@gmail.com');

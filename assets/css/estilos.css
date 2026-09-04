@@ -201,6 +201,13 @@ button:focus-visible {
     font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 }
 
+.alf-chips img {
+    width: 0.85rem;
+    height: 0.85rem;
+    margin-right: 0.3rem;
+    vertical-align: -0.1rem;
+}
+
 .alf-cabecera {
     background: radial-gradient(600px 260px at 50% -40px, rgba(var(--alf-azul-rgb), 0.18), transparent 70%);
 }

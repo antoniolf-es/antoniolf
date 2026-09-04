@@ -18,8 +18,9 @@
         </div>
 
         <div class="col-lg-6">
-            <form class="card alf-tarjeta p-4" method="post" action="<?= url('/contacto') ?>" novalidate>
+            <form id="form-contacto" class="card alf-tarjeta p-4" method="post" action="<?= url('/contacto') ?>" data-recaptcha="<?= e(RECAPTCHA_V3_SITE_KEY) ?>" novalidate>
                 <?= csrf_campo() ?>
+                <input type="hidden" name="g-recaptcha-response" id="recaptcha-token" value="">
 
                 <?php if (($errores['_formulario'] ?? null) !== null): ?>
                 <div class="alert alert-danger py-2 small">
@@ -65,7 +66,7 @@
                             <i class="bi bi-send me-2"></i>Enviar mensaje
                         </button>
                         <p class="text-secondary small mt-3 mb-0">
-                            Maqueta: el envío aún no se guarda en la base de datos.
+                            Este formulario está protegido con reCAPTCHA de Google.
                         </p>
                     </div>
                 </div>
@@ -73,3 +74,5 @@
         </div>
     </div>
 </section>
+
+<script src="https://www.google.com/recaptcha/api.js?render=<?= e(RECAPTCHA_V3_SITE_KEY) ?>" async defer></script>

@@ -36,4 +36,32 @@ jQuery(function ($) {
             }
         }
     });
+
+    var $formContacto = $('#form-contacto');
+
+    if ($formContacto.length) {
+        $formContacto.on('submit', function (evento) {
+            if ($formContacto.data('enviando') || typeof grecaptcha === 'undefined') {
+                return;
+            }
+
+            evento.preventDefault();
+
+            var $boton = $formContacto.find('button[type="submit"]');
+            $boton.prop('disabled', true);
+
+            var reactivar = setTimeout(function () {
+                $boton.prop('disabled', false);
+            }, 10000);
+
+            grecaptcha.ready(function () {
+                grecaptcha.execute($formContacto.data('recaptcha'), { action: 'contacto' }).then(function (token) {
+                    clearTimeout(reactivar);
+                    $formContacto.find('#recaptcha-token').val(token);
+                    $formContacto.data('enviando', true);
+                    $formContacto.trigger('submit');
+                });
+            });
+        });
+    }
 });

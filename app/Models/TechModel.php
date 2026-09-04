@@ -24,23 +24,32 @@ final class TechModel
 
     public function porIds(string $idsSeparadosPorComas): array
     {
-        $ids = array_values(array_filter(
+        $ids = array_values(array_unique(array_filter(
             array_map('intval', explode(',', $idsSeparadosPorComas)),
             static fn (int $id): bool => $id > 0
-        ));
+        )));
 
         if ($ids === []) {
             return [];
         }
 
         $marcadores = implode(',', array_fill(0, count($ids), '?'));
-        $consulta = Database::conexion()->prepare('SELECT ' . self::COLUMNAS . ' FROM techs WHERE id IN (' . $marcadores . ') ORDER BY id');
+        $consulta = Database::conexion()->prepare('SELECT ' . self::COLUMNAS . ' FROM techs WHERE id IN (' . $marcadores . ')');
         $consulta->execute($ids);
 
-        return array_map(
-            fn (array $fila): array => $this->mapear($fila),
-            $consulta->fetchAll()
-        );
+        $techs = [];
+        foreach ($consulta->fetchAll() as $fila) {
+            $techs[(int) $fila['id']] = $this->mapear($fila);
+        }
+
+        $ordenadas = [];
+        foreach ($ids as $id) {
+            if (isset($techs[$id])) {
+                $ordenadas[] = $techs[$id];
+            }
+        }
+
+        return $ordenadas;
     }
 
     private function mapear(array $fila): array

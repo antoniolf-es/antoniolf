@@ -5,6 +5,9 @@ declare(strict_types=1);
 namespace App\Controllers;
 
 use App\Core\Controller;
+use App\Models\ContactoModel;
+use App\Services\Mailjet;
+use App\Services\Recaptcha;
 
 final class ContactoController extends Controller
 {
@@ -52,6 +55,22 @@ final class ContactoController extends Controller
             flash('antiguos', ['nombre' => $nombre, 'email' => $email, 'asunto' => $asunto, 'mensaje' => $mensaje]);
             $this->redirigir('/contacto');
         }
+
+        $token = $_POST['g-recaptcha-response'] ?? '';
+
+        if (!Recaptcha::verificar(is_string($token) ? trim($token) : '')) {
+            flash('errores', ['_formulario' => 'No hemos podido verificar que eres una persona real. Inténtalo de nuevo.']);
+            flash('antiguos', ['nombre' => $nombre, 'email' => $email, 'asunto' => $asunto, 'mensaje' => $mensaje]);
+            $this->redirigir('/contacto');
+        }
+
+        if (!Mailjet::enviar($nombre, $email, $asunto, $mensaje)) {
+            flash('errores', ['_formulario' => 'No se ha podido enviar el mensaje. Prueba de nuevo dentro de un rato.']);
+            flash('antiguos', ['nombre' => $nombre, 'email' => $email, 'asunto' => $asunto, 'mensaje' => $mensaje]);
+            $this->redirigir('/contacto');
+        }
+
+        (new ContactoModel())->crear($nombre, $email, $asunto, $mensaje);
 
         flash('exito', true);
         $this->redirigir('/contacto/enviado');
