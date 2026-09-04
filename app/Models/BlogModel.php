@@ -43,8 +43,9 @@ final class BlogModel
         }
 
         if ($buscar !== '') {
-            $sql .= ' AND (title LIKE ? OR intro LIKE ?)';
+            $sql .= ' AND (title LIKE ? OR intro LIKE ? OR text LIKE ?)';
             $patron = '%' . $buscar . '%';
+            $parametros[] = $patron;
             $parametros[] = $patron;
             $parametros[] = $patron;
         }
@@ -73,6 +74,13 @@ final class BlogModel
         $fila = $consulta->fetch();
 
         return $fila === false ? null : $this->mapear($fila);
+    }
+
+    public function total(): int
+    {
+        return (int) Database::conexion()
+            ->query('SELECT COUNT(*) FROM blogs WHERE status = 1')
+            ->fetchColumn();
     }
 
     public function vecinos(int $id): array

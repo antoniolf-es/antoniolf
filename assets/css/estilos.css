@@ -301,6 +301,13 @@ a.alf-badge:hover {
     background: rgba(255, 255, 255, 0.02);
 }
 
+.alf-tech img {
+    width: 0.85rem;
+    height: 0.85rem;
+    margin-right: 0.25rem;
+    vertical-align: -0.1rem;
+}
+
 .alf-btn-filtro {
     --bs-btn-color: var(--alf-texto-suave);
     --bs-btn-bg: var(--alf-superficie);

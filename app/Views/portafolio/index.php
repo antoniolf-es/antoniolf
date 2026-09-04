@@ -1,11 +1,11 @@
+<?php $tipoInicial = array_key_first($tipos); ?>
 <header class="alf-cabecera container pt-5">
     <h1 class="alf-titulo-seccion">Portafolio</h1>
     <p class="text-secondary mb-4">Webs, aplicaciones y proyectos vintage en los que he trabajado estos años.</p>
 
     <div class="btn-group flex-wrap mb-2" role="group" aria-label="Filtrar proyectos por tipo">
-        <button type="button" class="btn alf-btn-filtro active" data-filtro="todos">Todos</button>
         <?php foreach ($tipos as $idTipo => $nombre): ?>
-        <button type="button" class="btn alf-btn-filtro" data-filtro="<?= $idTipo ?>"><?= e($nombre) ?></button>
+        <button type="button" class="btn alf-btn-filtro<?= $idTipo === $tipoInicial ? ' active' : '' ?>" data-filtro="<?= $idTipo ?>"><?= e($nombre) ?></button>
         <?php endforeach; ?>
     </div>
 </header>
@@ -13,7 +13,7 @@
 <section class="container py-5">
     <div class="row g-4">
         <?php foreach ($proyectos as $proyecto): ?>
-        <div class="col-md-6 col-lg-4 tarjeta-proyecto" data-tipo="<?= $proyecto['type'] ?>">
+        <div class="col-md-6 col-lg-4 tarjeta-proyecto<?= $proyecto['type'] !== $tipoInicial ? ' d-none' : '' ?>" data-tipo="<?= $proyecto['type'] ?>">
             <article class="card alf-tarjeta h-100">
                 <a href="<?= url('/portafolio/' . e($proyecto['slug'])) ?>">
                     <img src="<?= e($proyecto['imagen']) ?>" class="card-img-top" alt="<?= e($proyecto['titulo']) ?>" loading="lazy">
@@ -33,7 +33,7 @@
                     <p class="card-text text-secondary mb-3 flex-grow-1"><?= e($proyecto['descripcion']) ?></p>
                     <div class="mb-3">
                         <?php foreach ($proyecto['techs'] as $tech): ?>
-                        <span class="alf-tech me-1 mb-1"><?= e($tech['nombre']) ?></span>
+                        <span class="alf-tech me-1 mb-1"><img src="<?= e($tech['imagen']) ?>" alt=""><?= e($tech['nombre']) ?></span>
                         <?php endforeach; ?>
                     </div>
                     <a class="btn btn-outline-primary btn-sm alf-btn-detalle mt-auto" href="<?= url('/portafolio/' . e($proyecto['slug'])) ?>">

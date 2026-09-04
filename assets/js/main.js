@@ -7,7 +7,7 @@ jQuery(function ($) {
         $filtroTipo.on('click', function () {
             var tipo = $(this).data('filtro');
             var $tarjetas = $('.tarjeta-proyecto');
-            var $visibles = tipo === 'todos' ? $tarjetas : $tarjetas.filter('[data-tipo="' + tipo + '"]');
+            var $visibles = $tarjetas.filter('[data-tipo="' + tipo + '"]');
 
             $filtroTipo.removeClass('active');
             $(this).addClass('active');

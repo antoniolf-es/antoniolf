@@ -36,10 +36,17 @@
         <a class="alert-link" href="<?= url('/blog') ?>">Quitar filtros</a>
     </div>
     <?php else: ?>
+    <?php if ($postsLimitados): ?>
+    <p class="text-secondary small mb-4">
+        Mostrando los <?= count($posts) ?> artículos más recientes de un total de <?= $totalPosts ?>.
+        <a class="alf-ver-todo" href="<?= url('/blog?todos=1') ?>">Ver todos</a>
+    </p>
+    <?php else: ?>
     <p class="text-secondary small mb-4">
         <?= count($posts) ?> artículo<?= count($posts) === 1 ? '' : 's' ?>
         <?php if ($buscarActual !== ''): ?> para "<?= e($buscarActual) ?>"<?php endif; ?>
     </p>
+    <?php endif; ?>
     <div class="row g-4">
         <?php foreach ($posts as $post): ?>
         <div class="col-md-6 col-lg-4">

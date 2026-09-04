@@ -69,7 +69,7 @@
                     <p class="card-text text-secondary mb-3 flex-grow-1"><?= e($proyecto['descripcion']) ?></p>
                     <div class="mb-0">
                         <?php foreach ($proyecto['techs'] as $tech): ?>
-                        <span class="alf-tech me-1 mb-1"><?= e($tech['nombre']) ?></span>
+                        <span class="alf-tech me-1 mb-1"><img src="<?= e($tech['imagen']) ?>" alt=""><?= e($tech['nombre']) ?></span>
                         <?php endforeach; ?>
                     </div>
                 </div>

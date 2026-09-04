@@ -21,7 +21,7 @@
             <h2 class="alf-subtitulo-detalle">Tecnologías</h2>
             <div class="mb-4">
                 <?php foreach ($proyecto['techs'] as $tech): ?>
-                <span class="alf-tech me-1 mb-1"><?= e($tech['nombre']) ?></span>
+                <span class="alf-tech me-1 mb-1"><img src="<?= e($tech['imagen']) ?>" alt=""><?= e($tech['nombre']) ?></span>
                 <?php endforeach; ?>
             </div>
 

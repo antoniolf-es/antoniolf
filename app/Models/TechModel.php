@@ -8,14 +8,16 @@ use App\Core\Database;
 
 final class TechModel
 {
+    private const COLUMNAS = 'id, name AS nombre, image';
+
     public function todos(): array
     {
         $filas = Database::conexion()
-            ->query('SELECT id, name AS nombre FROM techs ORDER BY id')
+            ->query('SELECT ' . self::COLUMNAS . ' FROM techs ORDER BY id')
             ->fetchAll();
 
         return array_map(
-            fn (array $fila): array => ['id' => (int) $fila['id'], 'nombre' => (string) $fila['nombre']],
+            fn (array $fila): array => $this->mapear($fila),
             $filas
         );
     }
@@ -32,12 +34,21 @@ final class TechModel
         }
 
         $marcadores = implode(',', array_fill(0, count($ids), '?'));
-        $consulta = Database::conexion()->prepare('SELECT id, name AS nombre FROM techs WHERE id IN (' . $marcadores . ') ORDER BY id');
+        $consulta = Database::conexion()->prepare('SELECT ' . self::COLUMNAS . ' FROM techs WHERE id IN (' . $marcadores . ') ORDER BY id');
         $consulta->execute($ids);
 
         return array_map(
-            fn (array $fila): array => ['id' => (int) $fila['id'], 'nombre' => (string) $fila['nombre']],
+            fn (array $fila): array => $this->mapear($fila),
             $consulta->fetchAll()
         );
+    }
+
+    private function mapear(array $fila): array
+    {
+        return [
+            'id' => (int) $fila['id'],
+            'nombre' => (string) $fila['nombre'],
+            'imagen' => url('/img/tech/' . $fila['image']),
+        ];
     }
 }
