@@ -6,9 +6,9 @@ namespace App\Core;
 
 abstract class Controller
 {
-    protected function render(string $vista, array $datos = []): void
+    protected function render(string $vista, array $datos = [], string $layout = 'principal'): void
     {
-        echo View::render($vista, $datos);
+        echo View::render($vista, $datos, $layout);
     }
 
     protected function redirigir(string $ruta): never

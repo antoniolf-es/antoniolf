@@ -64,6 +64,91 @@ final class PortfolioModel
         return $fila === false ? null : $this->mapear($fila);
     }
 
+    public function porId(int $id): ?array
+    {
+        $consulta = Database::conexion()->prepare('SELECT ' . self::COLUMNAS . ' FROM portfolios WHERE id = ?');
+        $consulta->execute([$id]);
+
+        $fila = $consulta->fetch();
+
+        if ($fila === false) {
+            return null;
+        }
+
+        return [
+            'id' => (int) $fila['id'],
+            'titulo' => (string) $fila['titulo'],
+            'slug' => (string) $fila['slug'],
+            'descripcion' => (string) $fila['descripcion'],
+            'url' => (string) $fila['url'],
+            'image' => (string) $fila['image'],
+            'tech' => (string) $fila['tech'],
+            'type' => (int) $fila['type'],
+            'destacado' => (int) $fila['destacado'],
+        ];
+    }
+
+    public function slugExiste(string $slug, null|int $ignorarId = null): bool
+    {
+        $sql = 'SELECT COUNT(*) FROM portfolios WHERE slug = ?';
+        $parametros = [$slug];
+
+        if ($ignorarId !== null) {
+            $sql .= ' AND id <> ?';
+            $parametros[] = $ignorarId;
+        }
+
+        $consulta = Database::conexion()->prepare($sql);
+        $consulta->execute($parametros);
+
+        return (int) $consulta->fetchColumn() > 0;
+    }
+
+    public function crear(array $proyecto): int
+    {
+        $consulta = Database::conexion()->prepare(
+            'INSERT INTO portfolios (title, slug, description, url, image, tech, type, destacado, created_at, updated_at)
+             VALUES (?, ?, ?, ?, ?, ?, ?, ?, NOW(), NOW())'
+        );
+        $consulta->execute([
+            $proyecto['titulo'],
+            $proyecto['slug'],
+            $proyecto['descripcion'],
+            $proyecto['url'],
+            $proyecto['image'],
+            $proyecto['tech'],
+            $proyecto['type'],
+            $proyecto['destacado'],
+        ]);
+
+        return (int) Database::conexion()->lastInsertId();
+    }
+
+    public function actualizar(int $id, array $proyecto): void
+    {
+        $consulta = Database::conexion()->prepare(
+            'UPDATE portfolios
+             SET title = ?, slug = ?, description = ?, url = ?, tech = ?, type = ?, destacado = ?, updated_at = NOW()
+             WHERE id = ?'
+        );
+        $consulta->execute([
+            $proyecto['titulo'],
+            $proyecto['slug'],
+            $proyecto['descripcion'],
+            $proyecto['url'],
+            $proyecto['tech'],
+            $proyecto['type'],
+            $proyecto['destacado'],
+            $id,
+        ]);
+    }
+
+    public function borrar(int $id): void
+    {
+        $consulta = Database::conexion()->prepare('DELETE FROM portfolios WHERE id = ?');
+        $consulta->execute([$id]);
+    }
+
     private function mapear(array $fila): array
     {
         $fila['id'] = (int) $fila['id'];

@@ -13,11 +13,11 @@
                     </div>
                     <?php endif; ?>
 
-                    <form method="post" action="<?= url('/admin') ?>" class="text-start">
+                    <form method="post" action="<?= url('/intranet') ?>" class="text-start">
                         <?= csrf_campo() ?>
                         <div class="mb-3">
                             <label for="email" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="email" name="email" autocomplete="username" required>
+                            <input type="email" class="form-control" id="email" name="email" value="<?= e($email) ?>" autocomplete="username" required>
                         </div>
                         <div class="mb-4">
                             <label for="password" class="form-label">Contraseña</label>

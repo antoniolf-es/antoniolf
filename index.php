@@ -19,10 +19,11 @@ spl_autoload_register(static function (string $clase): void {
     }
 });
 
-use App\Controllers\AdminController;
 use App\Controllers\BlogController;
 use App\Controllers\ContactoController;
 use App\Controllers\HomeController;
+use App\Controllers\IntranetController;
+use App\Controllers\IntranetPortafolioController;
 use App\Controllers\PortafolioController;
 use App\Core\Router;
 
@@ -36,7 +37,15 @@ $router->get('/portafolio/{slug}', [PortafolioController::class, 'ver']);
 $router->get('/contacto', [ContactoController::class, 'index']);
 $router->post('/contacto', [ContactoController::class, 'enviar']);
 $router->get('/contacto/enviado', [ContactoController::class, 'exito']);
-$router->get('/admin', [AdminController::class, 'index']);
-$router->post('/admin', [AdminController::class, 'entrar']);
+
+$router->get('/intranet', [IntranetController::class, 'index']);
+$router->post('/intranet', [IntranetController::class, 'entrar']);
+$router->get('/intranet/salir', [IntranetController::class, 'salir']);
+$router->get('/intranet/portafolio', [IntranetPortafolioController::class, 'index']);
+$router->get('/intranet/portafolio/nuevo', [IntranetPortafolioController::class, 'nuevo']);
+$router->post('/intranet/portafolio/nuevo', [IntranetPortafolioController::class, 'crear']);
+$router->get('/intranet/portafolio/{id}/editar', [IntranetPortafolioController::class, 'editar']);
+$router->post('/intranet/portafolio/{id}/editar', [IntranetPortafolioController::class, 'guardar']);
+$router->post('/intranet/portafolio/{id}/borrar', [IntranetPortafolioController::class, 'borrar']);
 
 $router->despachar();

@@ -108,3 +108,42 @@ function dato_post(string $clave): string
 
     return is_string($valor) ? trim($valor) : '';
 }
+
+function autenticado(): bool
+{
+    return isset($_SESSION['usuario']);
+}
+
+function usuario(): ?array
+{
+    return autenticado() ? $_SESSION['usuario'] : null;
+}
+
+function requerir_login(): void
+{
+    if (!autenticado()) {
+        flash('error', 'Debes iniciar sesión para acceder a la intranet.');
+        header('Location: ' . url('/intranet'));
+        exit;
+    }
+}
+
+function slugificar(string $texto): string
+{
+    $tabla = [
+        'Á' => 'A', 'á' => 'a', 'À' => 'A', 'à' => 'a', 'Â' => 'A', 'â' => 'a', 'Ã' => 'A', 'ã' => 'a',
+        'Ä' => 'A', 'ä' => 'a', 'Å' => 'A', 'å' => 'a', 'Ç' => 'C', 'ç' => 'c',
+        'É' => 'E', 'é' => 'e', 'Ê' => 'E', 'ê' => 'e', 'Ë' => 'E', 'ë' => 'e',
+        'Í' => 'I', 'í' => 'i', 'Ì' => 'I', 'ì' => 'i', 'Î' => 'I', 'î' => 'i', 'Ï' => 'I', 'ï' => 'i',
+        'Ñ' => 'N', 'ñ' => 'n',
+        'Ó' => 'O', 'ó' => 'o', 'Ò' => 'O', 'ò' => 'o', 'Ô' => 'O', 'ô' => 'o', 'Õ' => 'O', 'õ' => 'o',
+        'Ö' => 'O', 'ö' => 'o',
+        'Ú' => 'U', 'ú' => 'u', 'Ù' => 'U', 'ù' => 'u', 'Û' => 'U', 'û' => 'u', 'Ü' => 'U', 'ü' => 'u',
+        'Ý' => 'Y', 'ý' => 'y', 'ß' => 'ss',
+    ];
+    $texto = strtr($texto, $tabla);
+    $texto = strtolower($texto);
+    $texto = preg_replace('/[^a-z0-9]+/', '-', $texto) ?? '';
+
+    return trim($texto, '-');
+}

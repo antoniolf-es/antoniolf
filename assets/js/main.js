@@ -25,6 +25,14 @@ jQuery(function ($) {
         });
     }
 
+    var $formConfirmar = $('form[data-confirmar]');
+
+    $formConfirmar.on('submit', function (evento) {
+        if (!window.confirm($(this).data('confirmar'))) {
+            evento.preventDefault();
+        }
+    });
+
     var $menu = $('#menuPrincipal');
 
     $menu.on('click', 'a.nav-link', function () {
