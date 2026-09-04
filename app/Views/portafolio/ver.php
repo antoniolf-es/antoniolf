@@ -14,7 +14,9 @@
                 <span class="badge alf-badge"><?= e($proyecto['tipo']) ?></span>
             </div>
 
-            <img src="<?= e($proyecto['imagen']) ?>" class="alf-imagen-detalle rounded mb-4" alt="<?= e($proyecto['titulo']) ?>">
+            <div style="text-align: center;">
+                <img src="<?= e($proyecto['imagen']) ?>" class="alf-imagen-detalle rounded mb-4" alt="<?= e($proyecto['titulo']) ?>">
+            </div>
 
             <p class="lead text-secondary"><?= e($proyecto['descripcion']) ?></p>
 

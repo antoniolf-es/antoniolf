@@ -10,8 +10,9 @@ final class PortfolioModel
 {
     public const TIPOS = [
         0 => 'Web',
-        1 => 'App',
-        2 => 'Vintage',
+        1 => 'Web-App',
+        2 => 'Movil',
+        3 => 'Legacy'
     ];
 
     private const COLUMNAS = 'id, slug, title AS titulo, description AS descripcion, url, image, tech, type, destacado';

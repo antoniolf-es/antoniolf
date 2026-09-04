@@ -17,7 +17,9 @@
                 </a>
             </p>
 
-            <img src="<?= e($post['imagen']) ?>" class="alf-imagen-detalle rounded mb-4" alt="<?= e($post['titulo']) ?>">
+            <div style="text-align: center;">
+                <img src="<?= e($post['imagen']) ?>" class="alf-imagen-detalle rounded mb-4" alt="<?= e($post['titulo']) ?>">
+            </div>
 
             <div class="alf-texto">
                 <?= $post['texto'] ?>
