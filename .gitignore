@@ -1,5 +1,6 @@
 .alf/
 img/
+uploads/
 
 AGENTS.md
 .env

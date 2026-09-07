@@ -12,7 +12,7 @@ final class IntranetController extends Controller
     public function index(): void
     {
         if (autenticado()) {
-            $this->redirigir('/intranet/portafolio');
+            $this->redirigir('/intranet/dashboard');
         }
 
         $this->render('intranet/login', [
@@ -66,7 +66,7 @@ final class IntranetController extends Controller
             'email' => $usuario['email'],
         ];
 
-        $this->redirigir('/intranet/portafolio');
+        $this->redirigir('/intranet/dashboard');
     }
 
     public function salir(): void

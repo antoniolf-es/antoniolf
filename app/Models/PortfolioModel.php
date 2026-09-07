@@ -55,6 +55,18 @@ final class PortfolioModel
         );
     }
 
+    public function ultimos(int $limite): array
+    {
+        $consulta = Database::conexion()->query(
+            'SELECT ' . self::COLUMNAS . ', created_at AS fecha FROM portfolios ORDER BY id DESC LIMIT ' . (int) $limite
+        );
+
+        return array_map(
+            fn (array $fila): array => $this->mapear($fila),
+            $consulta->fetchAll()
+        );
+    }
+
     public function porSlug(string $slug): ?array
     {
         $consulta = Database::conexion()->prepare('SELECT ' . self::COLUMNAS . ' FROM portfolios WHERE slug = ?');
