@@ -89,22 +89,32 @@ final class BlogModel
         ];
     }
 
-    public function todosAdmin(): array
+    public function todosAdmin(null|int $limite = null): array
     {
-        $filas = Database::conexion()
-            ->query(
-                'SELECT b.id, b.title AS titulo, b.slug, b.image, b.status, b.category_id, b.created_at AS fecha,
-                        c.name AS categoria
-                 FROM blogs b
-                 LEFT JOIN blogs_categories c ON c.id = b.category_id
-                 ORDER BY b.created_at DESC, b.id DESC'
-            )
-            ->fetchAll();
+        $sql =
+            'SELECT b.id, b.title AS titulo, b.slug, b.image, b.status, b.category_id, b.created_at AS fecha,
+                    c.name AS categoria
+             FROM blogs b
+             LEFT JOIN blogs_categories c ON c.id = b.category_id
+             ORDER BY b.created_at DESC, b.id DESC';
+
+        if ($limite !== null) {
+            $sql .= ' LIMIT ' . (int) $limite;
+        }
+
+        $filas = Database::conexion()->query($sql)->fetchAll();
 
         return array_map(
             fn (array $fila): array => $this->mapearAdmin($fila),
             $filas
         );
+    }
+
+    public function totalAdmin(): int
+    {
+        return (int) Database::conexion()
+            ->query('SELECT COUNT(*) FROM blogs')
+            ->fetchColumn();
     }
 
     public function porId(int $id): ?array

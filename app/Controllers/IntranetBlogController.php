@@ -11,6 +11,8 @@ use App\Services\ImagenBlog;
 
 final class IntranetBlogController extends Controller
 {
+    private const ARTICULOS_INICIO = 15;
+
     public function __construct()
     {
         requerir_login();
@@ -18,9 +20,16 @@ final class IntranetBlogController extends Controller
 
     public function index(): void
     {
+        $todosBruto = $_GET['todos'] ?? '';
+        $verTodos = is_string($todosBruto) && $todosBruto === '1';
+
+        $blog = new BlogModel();
+
         $this->render('intranet/blog/index', [
             'titulo' => 'Blog',
-            'posts' => (new BlogModel())->todosAdmin(),
+            'posts' => $blog->todosAdmin($verTodos ? null : self::ARTICULOS_INICIO),
+            'total' => $blog->totalAdmin(),
+            'verTodos' => $verTodos,
             'exito' => flash_obtener('exito'),
             'error' => flash_obtener('error'),
         ], 'intranet');

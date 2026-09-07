@@ -95,4 +95,15 @@
             </table>
         </div>
     </div>
+
+    <?php if (!$verTodos && count($posts) < $total): ?>
+    <div class="d-flex flex-column align-items-center gap-2 mt-4">
+        <p class="text-secondary small mb-0">
+            Mostrando los <?= count($posts) ?> artículos más recientes de un total de <?= $total ?>.
+        </p>
+        <a class="btn btn-outline-primary" href="<?= url('/intranet/blog?todos=1') ?>">
+            <i class="bi bi-arrow-bar-down me-1"></i>Cargar todos
+        </a>
+    </div>
+    <?php endif; ?>
 </section>
