@@ -3,6 +3,15 @@
     --alf-azul-claro: #55a3e6;
     --alf-azul-oscuro: #1e5f92;
     --alf-azul-rgb: 42, 122, 188;
+    --alf-morado: #8256c9;
+    --alf-morado-claro: #b49af0;
+    --alf-morado-rgb: 130, 86, 201;
+    --alf-verde: #3f9d6b;
+    --alf-verde-claro: #82d3a6;
+    --alf-verde-rgb: 63, 157, 107;
+    --alf-naranja: #d98324;
+    --alf-naranja-claro: #f0a95c;
+    --alf-naranja-rgb: 217, 131, 36;
     --alf-fondo: #0d1219;
     --alf-fondo-2: #101722;
     --alf-superficie: #151d29;
@@ -254,13 +263,13 @@ button:focus-visible {
     box-shadow: 0 12px 30px -12px rgba(var(--alf-azul-rgb), 0.35);
 }
 
-.alf-tarjeta img {
+.alf-tarjeta .card-img-top {
     width: 100%;
     height: 190px;
     object-fit: cover;
 }
 
-.alf-tarjeta:hover img {
+.alf-tarjeta:hover .card-img-top {
     opacity: 0.85;
 }
 
@@ -297,6 +306,39 @@ a.alf-badge:hover {
     color: #9ecdf7;
 }
 
+.alf-badge-morado {
+    background: rgba(var(--alf-morado-rgb), 0.16);
+    border-color: rgba(var(--alf-morado-rgb), 0.45);
+    color: var(--alf-morado-claro);
+}
+
+.alf-badge-verde {
+    background: rgba(var(--alf-verde-rgb), 0.16);
+    border-color: rgba(var(--alf-verde-rgb), 0.45);
+    color: var(--alf-verde-claro);
+}
+
+.alf-badge-naranja {
+    background: rgba(var(--alf-naranja-rgb), 0.16);
+    border-color: rgba(var(--alf-naranja-rgb), 0.45);
+    color: var(--alf-naranja-claro);
+}
+
+a.alf-badge-morado:hover {
+    background: rgba(var(--alf-morado-rgb), 0.3);
+    color: #cdb6f7;
+}
+
+a.alf-badge-verde:hover {
+    background: rgba(var(--alf-verde-rgb), 0.3);
+    color: #a6e3c2;
+}
+
+a.alf-badge-naranja:hover {
+    background: rgba(var(--alf-naranja-rgb), 0.3);
+    color: #f5c084;
+}
+
 .alf-tech {
     display: inline-block;
     padding: 0.15rem 0.5rem;
@@ -316,16 +358,46 @@ a.alf-badge:hover {
 }
 
 .alf-btn-filtro {
-    --bs-btn-color: var(--alf-texto-suave);
+    --bs-btn-color: var(--alf-azul-claro);
     --bs-btn-bg: var(--alf-superficie);
-    --bs-btn-border-color: var(--alf-borde);
+    --bs-btn-border-color: var(--alf-azul);
     --bs-btn-hover-color: var(--alf-azul-claro);
-    --bs-btn-hover-bg: var(--alf-superficie);
+    --bs-btn-hover-bg: rgba(var(--alf-azul-rgb), 0.16);
     --bs-btn-hover-border-color: var(--alf-azul);
     --bs-btn-active-bg: var(--alf-azul);
     --bs-btn-active-border-color: var(--alf-azul);
     --bs-btn-active-color: #fff;
     font-weight: 600;
+}
+
+.alf-btn-filtro-morado {
+    --bs-btn-color: var(--alf-morado-claro);
+    --bs-btn-border-color: var(--alf-morado);
+    --bs-btn-hover-color: var(--alf-morado-claro);
+    --bs-btn-hover-bg: rgba(var(--alf-morado-rgb), 0.16);
+    --bs-btn-hover-border-color: var(--alf-morado);
+    --bs-btn-active-bg: var(--alf-morado);
+    --bs-btn-active-border-color: var(--alf-morado);
+}
+
+.alf-btn-filtro-verde {
+    --bs-btn-color: var(--alf-verde-claro);
+    --bs-btn-border-color: var(--alf-verde);
+    --bs-btn-hover-color: var(--alf-verde-claro);
+    --bs-btn-hover-bg: rgba(var(--alf-verde-rgb), 0.16);
+    --bs-btn-hover-border-color: var(--alf-verde);
+    --bs-btn-active-bg: var(--alf-verde);
+    --bs-btn-active-border-color: var(--alf-verde);
+}
+
+.alf-btn-filtro-naranja {
+    --bs-btn-color: var(--alf-naranja-claro);
+    --bs-btn-border-color: var(--alf-naranja);
+    --bs-btn-hover-color: var(--alf-naranja-claro);
+    --bs-btn-hover-bg: rgba(var(--alf-naranja-rgb), 0.16);
+    --bs-btn-hover-border-color: var(--alf-naranja);
+    --bs-btn-active-bg: var(--alf-naranja);
+    --bs-btn-active-border-color: var(--alf-naranja);
 }
 
 .alf-btn-detalle:hover {
@@ -357,7 +429,14 @@ a.alf-badge:hover {
 }
 
 .alf-imagen-detalle {
-    width: 75%;
+    width: 100%;
+    height: auto;
+}
+
+@media (min-width: 768px) {
+    .alf-imagen-detalle {
+        width: 65%;
+    }
 }
 
 .alf-texto {
@@ -492,6 +571,10 @@ a.alf-badge:hover {
     cursor: default;
 }
 
+.alf-tabla {
+    table-layout: fixed;
+}
+
 .alf-tabla th {
     color: var(--alf-texto-suave);
     font-weight: 600;
@@ -513,6 +596,11 @@ a.alf-badge:hover {
     object-fit: cover;
     background: var(--alf-fondo-2);
     flex-shrink: 0;
+}
+
+.alf-celda-titulo {
+    flex: 1 1 auto;
+    min-width: 0;
 }
 
 .alf-celda-techs {

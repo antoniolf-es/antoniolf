@@ -38,6 +38,20 @@ function enlace_activo(string $ruta, string $prefijo = ''): string
     return $actual === $ruta ? ' active' : '';
 }
 
+function clase_badge_tipo(int $tipo): string
+{
+    $clases = [1 => ' alf-badge-morado', 2 => ' alf-badge-verde', 3 => ' alf-badge-naranja'];
+
+    return $clases[$tipo] ?? '';
+}
+
+function clase_filtro_tipo(int $tipo): string
+{
+    $clases = [1 => ' alf-btn-filtro-morado', 2 => ' alf-btn-filtro-verde', 3 => ' alf-btn-filtro-naranja'];
+
+    return $clases[$tipo] ?? '';
+}
+
 function fecha_es(null|string|int $fecha): string
 {
     $marca = strtotime((string) $fecha);

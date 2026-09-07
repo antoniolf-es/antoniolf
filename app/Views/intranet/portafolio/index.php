@@ -26,11 +26,11 @@
             <table class="table table-hover alf-tabla align-middle mb-0">
                 <thead>
                     <tr>
-                        <th scope="col" class="ps-4">Proyecto</th>
-                        <th scope="col">Tipo</th>
-                        <th scope="col">Tecnologías</th>
-                        <th scope="col">Destacado</th>
-                        <th scope="col" class="text-end pe-4">Acciones</th>
+                        <th scope="col" class="ps-4" style="width: 30%;">Proyecto</th>
+                        <th scope="col" style="width: 15%;">Tipo</th>
+                        <th scope="col" style="width: 30%;">Tecnologías</th>
+                        <th scope="col" style="width: 10%;">Destacado</th>
+                        <th scope="col" class="text-end pe-4" style="width: 15%;">Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -39,9 +39,9 @@
                         <td class="ps-4">
                             <div class="d-flex align-items-center gap-3">
                                 <img src="<?= e($proyecto['imagen']) ?>" alt="" width="64" height="48" class="alf-thumb rounded">
-                                <div>
-                                    <div class="fw-semibold"><?= e($proyecto['titulo']) ?></div>
-                                    <div class="text-secondary small">
+                                <div class="alf-celda-titulo">
+                                    <div class="fw-semibold text-truncate"><?= e($proyecto['titulo']) ?></div>
+                                    <div class="text-secondary small text-truncate">
                                         /portafolio/<?= e($proyecto['slug']) ?>
                                         <?php if ($proyecto['url'] !== ''): ?>
                                         · <a class="alf-enlace-ext" href="<?= e($proyecto['url']) ?>" target="_blank" rel="noopener" aria-label="Sitio externo" title="Visitar sitio"><i class="bi bi-box-arrow-up-right"></i></a>
@@ -50,7 +50,7 @@
                                 </div>
                             </div>
                         </td>
-                        <td><span class="badge alf-badge"><?= e($proyecto['tipo']) ?></span></td>
+                        <td><span class="badge alf-badge<?= clase_badge_tipo($proyecto['type']) ?>"><?= e($proyecto['tipo']) ?></span></td>
                         <td class="text-secondary small alf-celda-techs">
                             <?php foreach ($proyecto['techs'] as $tech): ?>
                             <span class="alf-tech me-1 mb-1"><img src="<?= e($tech['imagen']) ?>" alt=""><?= e($tech['nombre']) ?></span>

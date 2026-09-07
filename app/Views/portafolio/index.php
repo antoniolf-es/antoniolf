@@ -5,7 +5,7 @@
 
     <div class="btn-group flex-wrap mb-2" role="group" aria-label="Filtrar proyectos por tipo">
         <?php foreach ($tipos as $idTipo => $nombre): ?>
-        <button type="button" class="btn alf-btn-filtro<?= $idTipo === $tipoInicial ? ' active' : '' ?>" data-filtro="<?= $idTipo ?>"><?= e($nombre) ?></button>
+        <button type="button" class="btn alf-btn-filtro<?= clase_filtro_tipo($idTipo) ?><?= $idTipo === $tipoInicial ? ' active' : '' ?>" data-filtro="<?= $idTipo ?>"><?= e($nombre) ?></button>
         <?php endforeach; ?>
     </div>
 </header>
@@ -20,7 +20,7 @@
                 </a>
                 <div class="card-body d-flex flex-column">
                     <div class="d-flex justify-content-between align-items-center mb-2">
-                        <span class="badge alf-badge"><?= e($proyecto['tipo']) ?></span>
+                        <span class="badge alf-badge<?= clase_badge_tipo($proyecto['type']) ?>"><?= e($proyecto['tipo']) ?></span>
                         <?php if ($proyecto['url'] !== ''): ?>
                         <a href="<?= e($proyecto['url']) ?>" target="_blank" rel="noopener" class="alf-enlace-ext small" aria-label="Sitio externo de <?= e($proyecto['titulo']) ?>" title="Visitar sitio">
                             <i class="bi bi-box-arrow-up-right"></i>

@@ -11,7 +11,7 @@
 
             <div class="d-flex align-items-center gap-3 mb-3">
                 <h1 class="alf-titulo-detalle mb-0"><?= e($proyecto['titulo']) ?></h1>
-                <span class="badge alf-badge"><?= e($proyecto['tipo']) ?></span>
+                <span class="badge alf-badge<?= clase_badge_tipo($proyecto['type']) ?>"><?= e($proyecto['tipo']) ?></span>
             </div>
 
             <div style="text-align: center;">
