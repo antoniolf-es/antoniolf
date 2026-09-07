@@ -46,6 +46,9 @@
                                         <?php if ($proyecto['url'] !== ''): ?>
                                         · <a class="alf-enlace-ext" href="<?= e($proyecto['url']) ?>" target="_blank" rel="noopener" aria-label="Sitio externo" title="Visitar sitio"><i class="bi bi-box-arrow-up-right"></i></a>
                                         <?php endif; ?>
+                                        <?php if ($proyecto['github'] !== ''): ?>
+                                        · <a class="alf-enlace-ext" href="<?= e($proyecto['github']) ?>" target="_blank" rel="noopener" aria-label="Repositorio de GitHub" title="Ver código en GitHub"><i class="bi bi-github"></i></a>
+                                        <?php endif; ?>
                                     </div>
                                 </div>
                             </div>

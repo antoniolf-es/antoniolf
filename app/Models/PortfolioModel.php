@@ -15,7 +15,7 @@ final class PortfolioModel
         3 => 'Legacy'
     ];
 
-    private const COLUMNAS = 'id, slug, title AS titulo, description AS descripcion, url, image, tech, type, destacado';
+    private const COLUMNAS = 'id, slug, title AS titulo, description AS descripcion, url, github, image, tech, type, destacado';
 
     public function tipos(): array
     {
@@ -94,6 +94,7 @@ final class PortfolioModel
             'slug' => (string) $fila['slug'],
             'descripcion' => (string) $fila['descripcion'],
             'url' => (string) $fila['url'],
+            'github' => (string) ($fila['github'] ?? ''),
             'image' => (string) $fila['image'],
             'tech' => (string) $fila['tech'],
             'type' => (int) $fila['type'],
@@ -120,14 +121,15 @@ final class PortfolioModel
     public function crear(array $proyecto): int
     {
         $consulta = Database::conexion()->prepare(
-            'INSERT INTO portfolios (title, slug, description, url, image, tech, type, destacado, created_at, updated_at)
-             VALUES (?, ?, ?, ?, ?, ?, ?, ?, NOW(), NOW())'
+            'INSERT INTO portfolios (title, slug, description, url, github, image, tech, type, destacado, created_at, updated_at)
+             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), NOW())'
         );
         $consulta->execute([
             $proyecto['titulo'],
             $proyecto['slug'],
             $proyecto['descripcion'],
             $proyecto['url'],
+            $proyecto['github'],
             $proyecto['image'],
             $proyecto['tech'],
             $proyecto['type'],
@@ -141,7 +143,7 @@ final class PortfolioModel
     {
         $consulta = Database::conexion()->prepare(
             'UPDATE portfolios
-             SET title = ?, slug = ?, description = ?, url = ?, tech = ?, type = ?, destacado = ?, updated_at = NOW()
+             SET title = ?, slug = ?, description = ?, url = ?, github = ?, tech = ?, type = ?, destacado = ?, updated_at = NOW()
              WHERE id = ?'
         );
         $consulta->execute([
@@ -149,6 +151,7 @@ final class PortfolioModel
             $proyecto['slug'],
             $proyecto['descripcion'],
             $proyecto['url'],
+            $proyecto['github'],
             $proyecto['tech'],
             $proyecto['type'],
             $proyecto['destacado'],
@@ -167,6 +170,7 @@ final class PortfolioModel
         $fila['id'] = (int) $fila['id'];
         $fila['type'] = (int) $fila['type'];
         $fila['destacado'] = (int) $fila['destacado'];
+        $fila['github'] = (string) ($fila['github'] ?? '');
         $fila['imagen'] = url('/img/portfolio/' . $fila['image'] . '_1.jpg');
         unset($fila['image']);
 

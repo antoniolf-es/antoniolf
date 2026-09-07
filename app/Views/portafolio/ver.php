@@ -33,6 +33,11 @@
                     <i class="bi bi-box-arrow-up-right me-2"></i>Visitar sitio
                 </a>
                 <?php endif; ?>
+                <?php if ($proyecto['github'] !== ''): ?>
+                <a class="btn btn-outline-primary" href="<?= e($proyecto['github']) ?>" target="_blank" rel="noopener">
+                    <i class="bi bi-github me-2"></i>Ver código
+                </a>
+                <?php endif; ?>
                 <a class="btn btn-outline-secondary" href="<?= url('/portafolio') ?>">
                     <i class="bi bi-arrow-left me-2"></i>Volver al portafolio
                 </a>

@@ -42,6 +42,14 @@
                                     <?php if (isset($errores['url'])): ?><div class="text-danger small mt-1"><?= e($errores['url']) ?></div><?php endif; ?>
                                 </div>
                                 <div class="col-md-6 mb-3">
+                                    <label for="github" class="form-label"><i class="bi bi-github me-1"></i>GitHub</label>
+                                    <input type="url" class="form-control<?= isset($errores['github']) ? ' is-invalid' : '' ?>" id="github" name="github" maxlength="255" value="<?= e($valores['github']) ?>" placeholder="https://github.com/usuario/repositorio">
+                                    <?php if (isset($errores['github'])): ?><div class="text-danger small mt-1"><?= e($errores['github']) ?></div><?php endif; ?>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
                                     <label for="type" class="form-label">Tipo <span class="text-danger">*</span></label>
                                     <select class="form-select<?= isset($errores['type']) ? ' is-invalid' : '' ?>" id="type" name="type" required>
                                         <?php foreach ($tipos as $idTipo => $nombre): ?>

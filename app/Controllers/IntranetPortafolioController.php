@@ -66,6 +66,7 @@ final class IntranetPortafolioController extends Controller
             'slug' => $valores['slug'],
             'descripcion' => $valores['descripcion'],
             'url' => $valores['url'],
+            'github' => $valores['github'],
             'image' => $valores['slug'],
             'tech' => implode(',', $valores['tech']),
             'type' => $valores['type'],
@@ -89,6 +90,7 @@ final class IntranetPortafolioController extends Controller
             'slug' => $proyecto['slug'],
             'descripcion' => $proyecto['descripcion'],
             'url' => $proyecto['url'],
+            'github' => $proyecto['github'],
             'type' => $proyecto['type'],
             'tech' => array_map('intval', explode(',', $proyecto['tech'])),
             'destacado' => $proyecto['destacado'],
@@ -129,6 +131,7 @@ final class IntranetPortafolioController extends Controller
             'slug' => $valores['slug'],
             'descripcion' => $valores['descripcion'],
             'url' => $valores['url'],
+            'github' => $valores['github'],
             'tech' => implode(',', $valores['tech']),
             'type' => $valores['type'],
             'destacado' => $valores['destacado'],
@@ -183,6 +186,7 @@ final class IntranetPortafolioController extends Controller
             'slug' => '',
             'descripcion' => '',
             'url' => '',
+            'github' => '',
             'type' => 0,
             'tech' => [],
             'destacado' => 0,
@@ -200,6 +204,7 @@ final class IntranetPortafolioController extends Controller
             'slug' => slugificar($slug !== '' ? $slug : dato_post('titulo')),
             'descripcion' => dato_post('descripcion'),
             'url' => dato_post('url'),
+            'github' => dato_post('github'),
             'type' => (int) dato_post('type'),
             'tech' => array_values(array_unique(array_filter($tech, static fn (int $id): bool => $id > 0))),
             'destacado' => isset($_POST['destacado']) ? 1 : 0,
@@ -234,6 +239,12 @@ final class IntranetPortafolioController extends Controller
             $errores['url'] = 'La URL debe empezar por http:// o https://.';
         } elseif (mb_strlen($valores['url']) > 255) {
             $errores['url'] = 'La URL no puede superar los 255 caracteres.';
+        }
+
+        if ($valores['github'] !== '' && !preg_match('#^https?://#i', $valores['github'])) {
+            $errores['github'] = 'La URL de GitHub debe empezar por http:// o https://.';
+        } elseif (mb_strlen($valores['github']) > 255) {
+            $errores['github'] = 'La URL de GitHub no puede superar los 255 caracteres.';
         }
 
         if (!array_key_exists($valores['type'], PortfolioModel::TIPOS)) {
