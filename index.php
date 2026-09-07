@@ -22,6 +22,8 @@ spl_autoload_register(static function (string $clase): void {
 use App\Controllers\BlogController;
 use App\Controllers\ContactoController;
 use App\Controllers\HomeController;
+use App\Controllers\IntranetBlogCategoriasController;
+use App\Controllers\IntranetBlogController;
 use App\Controllers\IntranetController;
 use App\Controllers\IntranetPortafolioController;
 use App\Controllers\PortafolioController;
@@ -47,5 +49,18 @@ $router->post('/intranet/portafolio/nuevo', [IntranetPortafolioController::class
 $router->get('/intranet/portafolio/{id}/editar', [IntranetPortafolioController::class, 'editar']);
 $router->post('/intranet/portafolio/{id}/editar', [IntranetPortafolioController::class, 'guardar']);
 $router->post('/intranet/portafolio/{id}/borrar', [IntranetPortafolioController::class, 'borrar']);
+
+$router->get('/intranet/blog', [IntranetBlogController::class, 'index']);
+$router->get('/intranet/blog/categorias', [IntranetBlogCategoriasController::class, 'index']);
+$router->get('/intranet/blog/categorias/nuevo', [IntranetBlogCategoriasController::class, 'nuevo']);
+$router->post('/intranet/blog/categorias/nuevo', [IntranetBlogCategoriasController::class, 'crear']);
+$router->get('/intranet/blog/categorias/{id}/editar', [IntranetBlogCategoriasController::class, 'editar']);
+$router->post('/intranet/blog/categorias/{id}/editar', [IntranetBlogCategoriasController::class, 'guardar']);
+$router->post('/intranet/blog/categorias/{id}/borrar', [IntranetBlogCategoriasController::class, 'borrar']);
+$router->get('/intranet/blog/nuevo', [IntranetBlogController::class, 'nuevo']);
+$router->post('/intranet/blog/nuevo', [IntranetBlogController::class, 'crear']);
+$router->get('/intranet/blog/{id}/editar', [IntranetBlogController::class, 'editar']);
+$router->post('/intranet/blog/{id}/editar', [IntranetBlogController::class, 'guardar']);
+$router->post('/intranet/blog/{id}/borrar', [IntranetBlogController::class, 'borrar']);
 
 $router->despachar();

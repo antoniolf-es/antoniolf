@@ -25,6 +25,19 @@
         </a>
         <span class="badge alf-badge ms-2">Intranet</span>
 
+        <ul class="navbar-nav d-none d-md-flex flex-row gap-1 ms-3">
+            <li class="nav-item">
+                <a class="nav-link fw-semibold<?= enlace_activo('', '/intranet/portafolio') ?>" href="<?= url('/intranet/portafolio') ?>">
+                    <i class="bi bi-collection me-1"></i>Portafolio
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link fw-semibold<?= enlace_activo('', '/intranet/blog') ?>" href="<?= url('/intranet/blog') ?>">
+                    <i class="bi bi-journal-text me-1"></i>Blog
+                </a>
+            </li>
+        </ul>
+
         <ul class="navbar-nav ms-auto flex-row align-items-center gap-1">
             <?php if (usuario() !== null): ?>
             <li class="nav-item">
