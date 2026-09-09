@@ -84,8 +84,3 @@ Variable opcional (pestaña *Variables* del mismo menú): `FTP_DISABLE_EPSV=1` s
 ### Base de datos
 
 El despliegue **no toca la BD**: los cambios de esquema se aplican a mano en producción (phpMyAdmin o script SQL).
-
-## Referencias externas
-
-- Sitio original del que se migra: **https://www.antoniolf.es**
-- https://alftools.netlify.app
