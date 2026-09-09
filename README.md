@@ -69,7 +69,7 @@ Al pushear a `main`, GitHub Actions despliega automáticamente a **https://www.a
 
 | Secret | Valor |
 |---|---|
-| `FTP_URL` | `ftpes://host:21/ruta/al/docroot` (TLS explícito, lo habitual; si el hosting usa implícito: `ftps://host:990`) |
+| `FTP_URL` | `ftpes://host:21/public_html` — **incluir siempre la ruta a la carpeta del sitio** (la que aparece como "Remote site" en FileZilla). Sin ruta, git-ftp sube a la raíz del FTP, donde vive el `.env` de producción (un nivel por encima del docroot). TLS explícito; si el hosting usa implícito: `ftps://host:990` |
 | `FTP_USER` | Usuario FTP del hosting |
 | `FTP_PASS` | Contraseña FTP |
 
