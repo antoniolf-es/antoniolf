@@ -56,6 +56,35 @@ uploads/                   # imágenes nuevas subidas desde la intranet (blog/)
 
 - **Dark theme con azul como color destacado**, similar al sitio anterior. Bootstrap en modo `data-bs-theme="dark"`, estilos propios en `assets/css/estilos.css`.
 
+## Despliegue (CI/CD)
+
+Al pushear a `main`, GitHub Actions despliega automáticamente a **https://www.antoniolf.es** por **FTPS** con [git-ftp](https://github.com/git-ftp/git-ftp) (`.github/workflows/deploy.yml`):
+
+- El último commit desplegado queda anotado en `.git-ftp.log` en el servidor: cada push sube **solo el diff** del commit y borra lo eliminado. La primera ejecución (`--auto-init`) sube todo lo trackeado y marca el estado.
+- Solo se sincronizan ficheros trackeados: `img/`, `uploads/` y el `.env` de producción **no se tocan nunca** (viven únicamente en el servidor).
+- Los dotfiles (`.env`, `.git-ftp.log`) devuelven **403** por el bloque `FilesMatch` del `.htaccess`.
+- Los deploys se encolan (`concurrency`), nunca se solapan dos subidas.
+
+### Secrets requeridos (Settings → Secrets and variables → Actions)
+
+| Secret | Valor |
+|---|---|
+| `FTP_URL` | `ftpes://host:21/ruta/al/docroot` (TLS explícito, lo habitual; si el hosting usa implícito: `ftps://host:990`) |
+| `FTP_USER` | Usuario FTP del hosting |
+| `FTP_PASS` | Contraseña FTP |
+
+Variable opcional (pestaña *Variables* del mismo menú): `FTP_DISABLE_EPSV=1` si el hosting rechaza el modo pasivo extendido.
+
+### Modos manuales (Actions → Deploy → Run workflow)
+
+- **push** — despliegue normal (el que corre en cada push a `main`).
+- **dry-run** — muestra qué subiría, sin tocar nada (ideal para depurar la conexión FTPS).
+- **catchup** — marca el commit actual como desplegado sin subir nada (para reparar el estado tras cambios manuales en el servidor).
+
+### Base de datos
+
+El despliegue **no toca la BD**: los cambios de esquema se aplican a mano en producción (phpMyAdmin o script SQL).
+
 ## Referencias externas
 
 - Sitio original del que se migra: **https://www.antoniolf.es**

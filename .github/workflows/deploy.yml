@@ -1,0 +1,65 @@
+name: Deploy
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: Modo de despliegue
+        type: choice
+        options:
+          - push
+          - dry-run
+          - catchup
+        default: push
+
+permissions:
+  contents: read
+
+concurrency:
+  group: deploy-production
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout (historia completa)
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Instalar git-ftp
+        run: |
+          set -euo pipefail
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq git-ftp
+
+      - name: Configurar acceso FTPS
+        run: |
+          set -euo pipefail
+          git config git-ftp.url "$FTP_URL"
+          git config git-ftp.user "$FTP_USER"
+          git config git-ftp.password "$FTP_PASS"
+          if [ "${FTP_DISABLE_EPSV:-}" = "1" ]; then
+            git config git-ftp.disable-epsv 1
+          fi
+        env:
+          FTP_URL: ${{ secrets.FTP_URL }}
+          FTP_USER: ${{ secrets.FTP_USER }}
+          FTP_PASS: ${{ secrets.FTP_PASS }}
+          FTP_DISABLE_EPSV: ${{ vars.FTP_DISABLE_EPSV }}
+
+      - name: Desplegar
+        run: |
+          set -euo pipefail
+          case "$MODE" in
+            push)    git ftp push --auto-init ;;
+            dry-run) git ftp push --dry-run -v ;;
+            catchup) git ftp catchup ;;
+            *)       echo "Modo desconocido: $MODE" >&2; exit 2 ;;
+          esac
+        env:
+          MODE: ${{ inputs.mode || 'push' }}
