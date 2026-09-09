@@ -59,6 +59,7 @@ $router->post('/intranet/blog/categorias/nuevo', [IntranetBlogCategoriasControll
 $router->get('/intranet/blog/categorias/{id}/editar', [IntranetBlogCategoriasController::class, 'editar']);
 $router->post('/intranet/blog/categorias/{id}/editar', [IntranetBlogCategoriasController::class, 'guardar']);
 $router->post('/intranet/blog/categorias/{id}/borrar', [IntranetBlogCategoriasController::class, 'borrar']);
+$router->post('/intranet/blog/mejorar-ia', [IntranetBlogController::class, 'mejorarIa']);
 $router->get('/intranet/blog/nuevo', [IntranetBlogController::class, 'nuevo']);
 $router->post('/intranet/blog/nuevo', [IntranetBlogController::class, 'crear']);
 $router->get('/intranet/blog/{id}/editar', [IntranetBlogController::class, 'editar']);

@@ -135,11 +135,24 @@ function usuario(): ?array
 
 function requerir_login(): void
 {
-    if (!autenticado()) {
-        flash('error', 'Debes iniciar sesión para acceder a la intranet.');
-        header('Location: ' . url('/intranet'));
+    if (autenticado()) {
+        return;
+    }
+
+    $esAjax = ($_SERVER['HTTP_X_REQUESTED_WITH'] ?? '') === 'XMLHttpRequest'
+        || str_contains($_SERVER['HTTP_ACCEPT'] ?? '', 'application/json');
+
+    if ($esAjax) {
+        http_response_code(401);
+        header('Content-Type: application/json; charset=utf-8');
+
+        echo json_encode(['ok' => false, 'error' => 'Debes iniciar sesión para acceder a la intranet.'], JSON_UNESCAPED_UNICODE);
         exit;
     }
+
+    flash('error', 'Debes iniciar sesión para acceder a la intranet.');
+    header('Location: ' . url('/intranet'));
+    exit;
 }
 
 function slugificar(string $texto): string

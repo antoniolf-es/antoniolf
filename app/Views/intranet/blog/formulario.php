@@ -49,8 +49,15 @@
                             </div>
 
                             <div class="mb-0">
-                                <label for="texto" class="form-label d-block">Contenido <span class="text-danger">*</span></label>
+                                <div class="form-label d-flex justify-content-between align-items-center">
+                                    <label for="texto" class="mb-0">Contenido <span class="text-danger">*</span></label>
+                                    <button type="button" class="btn btn-sm btn-outline-primary" id="btn-ia">
+                                        <span class="spinner-border spinner-border-sm d-none me-1" id="ia-spinner" aria-hidden="true"></span>
+                                        <i class="bi bi-stars me-1" id="ia-icono" aria-hidden="true"></i>Revisar con IA
+                                    </button>
+                                </div>
                                 <textarea class="form-control<?= isset($errores['texto']) ? ' is-invalid' : '' ?>" id="texto" name="texto" rows="14"><?= e($valores['texto']) ?></textarea>
+                                <div class="alert alert-danger small mt-2 mb-0 d-none" id="ia-error" role="alert"></div>
                                 <?php if (isset($errores['texto'])): ?><div class="text-danger small mt-1"><?= e($errores['texto']) ?></div><?php endif; ?>
                             </div>
                         </div>
@@ -90,22 +97,150 @@
                     </div>
                 </div>
             </form>
+
+            <div class="modal fade" id="modalIa" tabindex="-1" aria-labelledby="ia-titulo-modal" aria-hidden="true">
+                <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h2 class="modal-title fs-5" id="ia-titulo-modal"><i class="bi bi-stars me-2"></i>Revisión con IA</h2>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row g-3">
+                                <div class="col-lg-6">
+                                    <h3 class="fs-6 text-secondary mb-2">Original</h3>
+                                    <div class="alf-ia-panel alf-texto" id="ia-original"></div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <h3 class="fs-6 text-secondary mb-2">Propuesta (editable)</h3>
+                                    <textarea id="texto-ia"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal"><i class="bi bi-x-lg me-2"></i>Descartar</button>
+                            <button type="button" class="btn btn-primary" id="ia-aceptar"><i class="bi bi-check-lg me-2"></i>Usar propuesta</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </section>
 
 <script src="https://cdn.jsdelivr.net/npm/tinymce@7.9.3/tinymce.min.js" referrerpolicy="origin"></script>
 <script>
-tinymce.init({
-    selector: '#texto',
-    language: 'es',
-    language_url: '<?= url('/assets/js/tinymce/langs/es.js') ?>',
-    skin: 'oxide-dark',
-    content_css: 'dark',
-    menubar: false,
-    plugins: 'autoresize lists link code',
-    toolbar: 'undo redo | blocks | bold italic | link bullist numlist | code',
-    convert_urls: false,
-    autoresize_bottom_margin: 24
+function iniciarTinymce(selector, alIniciar) {
+    tinymce.init({
+        selector: selector,
+        language: 'es',
+        language_url: '<?= url('/assets/js/tinymce/langs/es.js') ?>',
+        skin: 'oxide-dark',
+        content_css: 'dark',
+        menubar: false,
+        plugins: 'autoresize lists link code',
+        toolbar: 'undo redo | blocks | bold italic | link bullist numlist | code',
+        convert_urls: false,
+        autoresize_bottom_margin: 24,
+        init_instance_callback: alIniciar
+    });
+}
+
+iniciarTinymce('#texto');
+</script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    var $botonIa = $('#btn-ia');
+
+    if (!$botonIa.length) {
+        return;
+    }
+
+    var $aviso = $('#ia-error');
+    var modalIa = document.getElementById('modalIa');
+    var editorIaIniciado = false;
+    var avisoTemporizador;
+
+    function aviso(mensaje) {
+        $aviso.text(mensaje).removeClass('d-none');
+        clearTimeout(avisoTemporizador);
+        avisoTemporizador = setTimeout(function () {
+            $aviso.addClass('d-none');
+        }, 8000);
+    }
+
+    function abrirModal(original, propuesta) {
+        $('#ia-original').html(original);
+
+        $(modalIa).off('shown.bs.modal.ia').on('shown.bs.modal.ia', function () {
+            if (!editorIaIniciado) {
+                editorIaIniciado = true;
+                iniciarTinymce('#texto-ia', function (editor) {
+                    editor.setContent(propuesta);
+                });
+            } else {
+                tinymce.get('texto-ia').setContent(propuesta);
+            }
+        });
+
+        bootstrap.Modal.getOrCreateInstance(modalIa).show();
+    }
+
+    $botonIa.on('click', function () {
+        if ($botonIa.data('enviando')) {
+            return;
+        }
+
+        var editor = tinymce.get('texto');
+
+        if (editor === null) {
+            aviso('El editor de contenido no está disponible.');
+            return;
+        }
+
+        var original = editor.getContent();
+
+        if (editor.getContent({ format: 'text' }).trim() === '' && !/<(img|iframe|video|audio)\b/i.test(original)) {
+            aviso('Escribe primero algo de contenido en el artículo.');
+            return;
+        }
+
+        $botonIa.data('enviando', true).prop('disabled', true);
+        $('#ia-icono').addClass('d-none');
+        $('#ia-spinner').removeClass('d-none');
+        $aviso.addClass('d-none');
+
+        $.ajax({
+            url: '<?= url('/intranet/blog/mejorar-ia') ?>',
+            method: 'POST',
+            data: {
+                _token: $botonIa.closest('form').find('input[name="_token"]').val(),
+                titulo: $('#titulo').val(),
+                texto: original
+            }
+        }).done(function (respuesta) {
+            if (respuesta && respuesta.ok) {
+                abrirModal(original, respuesta.texto);
+            } else {
+                aviso((respuesta && respuesta.error) || 'No se ha podido mejorar el texto.');
+            }
+        }).fail(function (xhr) {
+            aviso((xhr.responseJSON && xhr.responseJSON.error) || 'No se ha podido mejorar el texto.');
+        }).always(function () {
+            $botonIa.data('enviando', false).prop('disabled', false);
+            $('#ia-icono').removeClass('d-none');
+            $('#ia-spinner').addClass('d-none');
+        });
+    });
+
+    $('#ia-aceptar').on('click', function () {
+        var editorIa = tinymce.get('texto-ia');
+
+        if (editorIa !== null) {
+            tinymce.get('texto').setContent(editorIa.getContent());
+        }
+
+        bootstrap.Modal.getOrCreateInstance(modalIa).hide();
+    });
 });
 </script>

@@ -638,3 +638,18 @@ a.alf-badge-naranja:hover {
     max-width: 220px;
     display: block;
 }
+
+.alf-ia-panel {
+    max-height: 60vh;
+    overflow-y: auto;
+    border: 1px solid var(--alf-borde);
+    border-radius: 0.5rem;
+    padding: 1rem 1.25rem;
+    background: var(--alf-fondo-2);
+}
+
+@media (max-width: 991px) {
+    .alf-ia-panel {
+        max-height: 35vh;
+    }
+}

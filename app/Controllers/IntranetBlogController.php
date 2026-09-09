@@ -8,6 +8,7 @@ use App\Core\Controller;
 use App\Models\BlogCategoriaModel;
 use App\Models\BlogModel;
 use App\Services\ImagenBlog;
+use App\Services\RedactorIA;
 
 final class IntranetBlogController extends Controller
 {
@@ -164,6 +165,41 @@ final class IntranetBlogController extends Controller
 
         flash('exito', 'Artículo eliminado correctamente.');
         $this->redirigir('/intranet/blog');
+    }
+
+    public function mejorarIa(): void
+    {
+        if (!csrf_valido()) {
+            $this->json(['ok' => false, 'error' => 'Tu sesión ha caducado, vuelve a intentarlo.'], 403);
+        }
+
+        $titulo = dato_post('titulo');
+        $texto = dato_post('texto');
+
+        if (!$this->hayContenido($texto)) {
+            $this->json(['ok' => false, 'error' => 'Escribe primero algo de contenido en el artículo.'], 422);
+        }
+
+        if (mb_strlen($texto) > RedactorIA::MAX_CARACTERES) {
+            $this->json(['ok' => false, 'error' => 'El contenido supera el máximo de ' . number_format(RedactorIA::MAX_CARACTERES, 0, ',', '.') . ' caracteres para revisarlo con IA.'], 422);
+        }
+
+        $mejorado = RedactorIA::mejorar($titulo, $texto);
+
+        if ($mejorado === null) {
+            $this->json(['ok' => false, 'error' => RedactorIA::error() ?? 'No se ha podido mejorar el texto con IA.'], 502);
+        }
+
+        $this->json(['ok' => true, 'texto' => $mejorado]);
+    }
+
+    private function json(array $datos, int $codigo = 200): never
+    {
+        http_response_code($codigo);
+        header('Content-Type: application/json; charset=utf-8');
+
+        echo json_encode($datos, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+        exit;
     }
 
     private function pintarFormulario(bool $esAlta, null|array $post, array $valores, array $errores): void

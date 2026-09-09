@@ -37,3 +37,7 @@ define('MAILJET_API', env('MAILJET_API'));
 define('MAILJET_SECRET', env('MAILJET_SECRET'));
 define('MAILJET_REMITE', env('MAILJET_REMITE'));
 define('MAILJET_DESTINO', env('MAILJET_DESTINO'));
+
+// OPENAI
+define('OPENAI_API_KEY', env('OPENAI_API_KEY'));
+define('OPENAI_MODEL', env('OPENAI_MODEL') ?: 'gpt-5-mini');
