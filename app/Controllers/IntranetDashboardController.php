@@ -6,6 +6,7 @@ namespace App\Controllers;
 
 use App\Core\Controller;
 use App\Models\BlogModel;
+use App\Models\CheatsheetModel;
 use App\Models\PortfolioModel;
 
 final class IntranetDashboardController extends Controller
@@ -28,6 +29,7 @@ final class IntranetDashboardController extends Controller
             'titulo' => 'Dashboard',
             'posts' => (new BlogModel())->todosAdmin(5),
             'proyectos' => $proyectos,
+            'cheatsheets' => array_slice((new CheatsheetModel())->todosAdmin(), 0, 5),
         ], 'intranet');
     }
 }

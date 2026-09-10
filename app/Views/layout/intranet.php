@@ -41,6 +41,11 @@
                     <i class="bi bi-collection me-1"></i>Portafolio
                 </a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link fw-semibold<?= enlace_activo('', '/intranet/cheatsheets') ?>" href="<?= url('/intranet/cheatsheets') ?>">
+                    <i class="bi bi-journal-code me-1"></i>Cheatsheets
+                </a>
+            </li>
         </ul>
 
         <ul class="navbar-nav ms-auto flex-row align-items-center gap-1">

@@ -25,6 +25,7 @@ use App\Controllers\ContactoController;
 use App\Controllers\HomeController;
 use App\Controllers\IntranetBlogCategoriasController;
 use App\Controllers\IntranetBlogController;
+use App\Controllers\IntranetCheatsheetsController;
 use App\Controllers\IntranetController;
 use App\Controllers\IntranetDashboardController;
 use App\Controllers\IntranetPortafolioController;
@@ -54,6 +55,13 @@ $router->post('/intranet/portafolio/nuevo', [IntranetPortafolioController::class
 $router->get('/intranet/portafolio/{id}/editar', [IntranetPortafolioController::class, 'editar']);
 $router->post('/intranet/portafolio/{id}/editar', [IntranetPortafolioController::class, 'guardar']);
 $router->post('/intranet/portafolio/{id}/borrar', [IntranetPortafolioController::class, 'borrar']);
+
+$router->get('/intranet/cheatsheets', [IntranetCheatsheetsController::class, 'index']);
+$router->get('/intranet/cheatsheets/nuevo', [IntranetCheatsheetsController::class, 'nuevo']);
+$router->post('/intranet/cheatsheets/nuevo', [IntranetCheatsheetsController::class, 'crear']);
+$router->get('/intranet/cheatsheets/{id}/editar', [IntranetCheatsheetsController::class, 'editar']);
+$router->post('/intranet/cheatsheets/{id}/editar', [IntranetCheatsheetsController::class, 'guardar']);
+$router->post('/intranet/cheatsheets/{id}/borrar', [IntranetCheatsheetsController::class, 'borrar']);
 
 $router->get('/intranet/blog', [IntranetBlogController::class, 'index']);
 $router->get('/intranet/blog/categorias', [IntranetBlogCategoriasController::class, 'index']);

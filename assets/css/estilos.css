@@ -836,6 +836,13 @@ a.alf-badge-naranja:hover {
     display: block;
 }
 
+.alf-icono-formulario {
+    width: 64px;
+    height: 64px;
+    display: block;
+    background: var(--alf-fondo-2);
+}
+
 .alf-ia-panel {
     max-height: 60vh;
     overflow-y: auto;
