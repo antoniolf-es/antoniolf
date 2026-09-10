@@ -130,20 +130,21 @@
 
 <script src="https://cdn.jsdelivr.net/npm/tinymce@7.9.3/tinymce.min.js" referrerpolicy="origin"></script>
 <script>
-function iniciarTinymce(selector, alIniciar) {
-    tinymce.init({
+function iniciarTinymce(selector, alIniciar, opciones) {
+    tinymce.init(Object.assign({
         selector: selector,
         language: 'es',
         language_url: '<?= url('/assets/js/tinymce/langs/es.js') ?>',
         skin: 'oxide-dark',
         content_css: 'dark',
         menubar: false,
-        plugins: 'autoresize lists link code',
+        plugins: 'lists link code',
         toolbar: 'undo redo | blocks | bold italic | link bullist numlist | code',
         convert_urls: false,
-        autoresize_bottom_margin: 24,
+        height: 350,
+        resize: true,
         init_instance_callback: alIniciar
-    });
+    }, opciones || {}));
 }
 
 iniciarTinymce('#texto');
@@ -177,7 +178,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 editorIaIniciado = true;
                 iniciarTinymce('#texto-ia', function (editor) {
                     editor.setContent(propuesta);
-                });
+                }, { height: 320 });
             } else {
                 tinymce.get('texto-ia').setContent(propuesta);
             }
