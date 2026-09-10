@@ -17,6 +17,8 @@
                     <li class="list-inline-item">·</li>
                     <li class="list-inline-item"><a href="<?= url('/portafolio') ?>">Portafolio</a></li>
                     <li class="list-inline-item">·</li>
+                    <li class="list-inline-item"><a href="<?= url('/cheatsheets') ?>">Cheatsheets</a></li>
+                    <li class="list-inline-item">·</li>
                     <li class="list-inline-item"><a href="<?= url('/contacto') ?>">Contacto</a></li>
                 </ul>
             </div>

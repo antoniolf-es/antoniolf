@@ -20,6 +20,7 @@ spl_autoload_register(static function (string $clase): void {
 });
 
 use App\Controllers\BlogController;
+use App\Controllers\CheatsheetsController;
 use App\Controllers\ContactoController;
 use App\Controllers\HomeController;
 use App\Controllers\IntranetBlogCategoriasController;
@@ -37,6 +38,8 @@ $router->get('/blog', [BlogController::class, 'index']);
 $router->get('/blog/{slug}', [BlogController::class, 'ver']);
 $router->get('/portafolio', [PortafolioController::class, 'index']);
 $router->get('/portafolio/{slug}', [PortafolioController::class, 'ver']);
+$router->get('/cheatsheets', [CheatsheetsController::class, 'index']);
+$router->get('/cheatsheets/{slug}', [CheatsheetsController::class, 'ver']);
 $router->get('/contacto', [ContactoController::class, 'index']);
 $router->post('/contacto', [ContactoController::class, 'enviar']);
 $router->get('/contacto/enviado', [ContactoController::class, 'exito']);

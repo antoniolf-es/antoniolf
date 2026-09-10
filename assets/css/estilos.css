@@ -564,6 +564,203 @@ a.alf-badge-naranja:hover {
     border-top: 1px solid var(--alf-borde);
 }
 
+/* ----------------------------- CHEATSHEETS ----------------------------- */
+
+.alf-menu-cheats {
+    display: flex;
+    gap: 0.5rem;
+    overflow-x: auto;
+    padding-bottom: 0.75rem;
+}
+
+.alf-enlace-cheats {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    white-space: nowrap;
+    padding: 0.45rem 0.95rem;
+    border: 1px solid var(--alf-borde);
+    border-radius: 0.5rem;
+    background: var(--alf-superficie);
+    color: var(--alf-texto-suave);
+    text-decoration: none;
+    font-family: "Rajdhani", sans-serif;
+    font-weight: 600;
+    font-size: 1.05rem;
+    letter-spacing: 0.5px;
+    transition: color 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+}
+
+.alf-enlace-cheats img {
+    width: 1.25rem;
+    height: 1.25rem;
+    flex-shrink: 0;
+}
+
+.alf-enlace-cheats:hover,
+.alf-enlace-cheats:focus-visible {
+    color: var(--alf-azul-claro);
+    border-color: rgba(var(--alf-azul-rgb), 0.6);
+}
+
+.alf-enlace-cheats.active {
+    color: #fff;
+    background: rgba(var(--alf-azul-rgb), 0.18);
+    border-color: var(--alf-azul);
+}
+
+@media (min-width: 992px) {
+    .alf-menu-cheats {
+        position: sticky;
+        top: 84px;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.375rem;
+        overflow: visible;
+        padding-bottom: 0;
+    }
+}
+
+.alf-titulo-cheats {
+    font-family: "Rajdhani", sans-serif;
+    font-weight: 700;
+    color: #fff;
+    font-size: 1.55rem;
+    line-height: 1.15;
+}
+
+.alf-cheatsheet {
+    background: var(--alf-superficie);
+    border: 1px solid var(--alf-borde);
+    border-radius: 0.75rem;
+    padding: 1.75rem 1.5rem;
+    font-size: 1rem;
+    line-height: 1.7;
+}
+
+.alf-cheatsheet h2 {
+    font-family: "Rajdhani", sans-serif;
+    font-weight: 700;
+    color: #fff;
+    font-size: 1.35rem;
+    margin: 1.9rem 0 0.85rem;
+}
+
+.alf-cheatsheet h2:first-child {
+    margin-top: 0;
+}
+
+.alf-cheatsheet hr {
+    border-color: var(--alf-borde);
+    opacity: 1;
+    margin: 1.9rem 0;
+}
+
+.alf-cheatsheet pre {
+    position: relative;
+    background: #0a0f15;
+    border: 1px solid var(--alf-borde);
+    border-left: 3px solid var(--alf-azul);
+    border-radius: 0.5rem;
+    padding: 1rem 1.25rem;
+    overflow-x: auto;
+    margin: 0.85rem 0 1.35rem;
+    font-size: 0.92rem;
+    line-height: 1.65;
+}
+
+.alf-cheatsheet pre[data-lenguaje]::before {
+    content: attr(data-lenguaje);
+    position: absolute;
+    top: 0.45rem;
+    right: 0.7rem;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--alf-texto-suave);
+    opacity: 0.65;
+}
+
+.alf-cheatsheet code {
+    color: var(--alf-azul-claro);
+    background: rgba(var(--alf-azul-rgb), 0.13);
+    border-radius: 0.3rem;
+    padding: 0.1rem 0.4rem;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 0.88em;
+}
+
+.alf-cheatsheet pre code {
+    color: var(--alf-texto);
+    background: none;
+    border-radius: 0;
+    padding: 0;
+    font-size: inherit;
+}
+
+.alf-cheatsheet blockquote {
+    border-left: 3px solid var(--alf-azul-claro);
+    background: rgba(var(--alf-azul-rgb), 0.1);
+    border-radius: 0 0.5rem 0.5rem 0;
+    padding: 0.85rem 1.25rem;
+    margin: 1.5rem 0 0;
+}
+
+.alf-cheatsheet blockquote p {
+    margin-bottom: 0;
+}
+
+.alf-cheatsheet blockquote strong {
+    color: var(--alf-azul-claro);
+}
+
+.alf-cheatsheet table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0.85rem 0 1.35rem;
+    font-size: 0.95rem;
+}
+
+.alf-cheatsheet th {
+    font-family: "Rajdhani", sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-size: 0.85rem;
+    color: var(--alf-azul-claro);
+    border-bottom: 2px solid rgba(var(--alf-azul-rgb), 0.5);
+    padding: 0.5rem 0.75rem;
+    text-align: left;
+}
+
+.alf-cheatsheet td {
+    padding: 0.5rem 0.75rem;
+    border-bottom: 1px solid var(--alf-borde);
+}
+
+.alf-cheatsheet tbody tr:nth-child(odd) {
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.alf-cheatsheet tbody tr:last-child td {
+    border-bottom: 0;
+}
+
+.alf-cheatsheet p {
+    margin-bottom: 1rem;
+}
+
+@media (max-width: 575.98px) {
+    .alf-cheatsheet {
+        padding: 1.25rem 1rem;
+    }
+
+    .alf-cheatsheet pre {
+        padding: 0.9rem 1rem;
+    }
+}
+
 /* ----------------------------- INTRANET ----------------------------- */
 
 .alf-usuario {

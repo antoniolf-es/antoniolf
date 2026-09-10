@@ -43,6 +43,11 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link fw-semibold<?= enlace_activo('/cheatsheets', '/cheatsheets') ?>" href="<?= url('/cheatsheets') ?>">
+                        <i class="bi bi-journal-code alf-icono-menu"></i>Cheatsheets
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link fw-semibold<?= enlace_activo('/contacto', '/contacto') ?>" href="<?= url('/contacto') ?>">
                         <i class="bi bi-envelope alf-icono-menu"></i>Contacto
                     </a>
