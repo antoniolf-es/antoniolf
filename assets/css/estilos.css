@@ -177,7 +177,7 @@ button:focus-visible {
 }
 
 .alf-hero {
-    padding: 3rem 1rem;
+    padding: 1rem 1rem;
     background:
         radial-gradient(700px 340px at 50% -60px, rgba(var(--alf-azul-rgb), 0.3), transparent 70%),
         linear-gradient(180deg, var(--alf-fondo-2), var(--alf-fondo));

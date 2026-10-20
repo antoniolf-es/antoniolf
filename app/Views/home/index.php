@@ -2,8 +2,7 @@
     <div class="container">
         <p class="alf-saludo text-uppercase fw-bold mb-2">Desarrollador web · Portfolio · Blog</p>
         <p class="lead text-secondary mx-auto mb-4" style="max-width: 640px;">
-            Desarrollador web que aún disfruta escribiendo PHP a mano.<br>
-            Aquí encontrarás mi portfolio, artículos de programación y contenidos relacionados con el desarrollo web.
+            Aquí encontrarás mi portfolio y contenidos relacionados con el desarrollo web y la informática.
         </p>
         <div class="d-flex gap-3 justify-content-center flex-wrap mb-4">
             <a class="btn btn-primary btn-lg alf-btn px-4" href="<?= url('/portafolio') ?>">
