@@ -225,8 +225,9 @@ button:focus-visible {
     font-family: "Rajdhani", sans-serif;
     font-weight: 700;
     color: #fff;
-    font-size: clamp(1.9rem, 4vw, 2.6rem);
+    font-size: clamp(1.25rem, 4vw, 1.25rem);
     line-height: 1.1;
+    text-transform: uppercase;
 }
 
 .alf-titulo-seccion::after {
@@ -247,6 +248,14 @@ button:focus-visible {
 
 .alf-ver-todo:hover {
     color: var(--alf-azul-claro);
+}
+
+/* Secciones del home con grid de 4 columnas: contenedor más ancho para
+   compensar la pérdida de tamaño de las tarjetas al repartirlas en 4. */
+@media (min-width: 1200px) {
+    .alf-seccion-ancho.container {
+        max-width: 1520px;
+    }
 }
 
 .alf-tarjeta {

@@ -1,17 +1,6 @@
 <section class="alf-hero text-center">
     <div class="container">
         <p class="alf-saludo text-uppercase fw-bold mb-2">Desarrollador web · Portfolio · Blog</p>
-        <p class="lead text-secondary mx-auto mb-4" style="max-width: 640px;">
-            Aquí encontrarás mi portfolio y contenidos relacionados con el desarrollo web y la informática.
-        </p>
-        <div class="d-flex gap-3 justify-content-center flex-wrap mb-4">
-            <a class="btn btn-primary btn-lg alf-btn px-4" href="<?= url('/portafolio') ?>">
-                <i class="bi bi-collection me-2"></i>Ver portafolio
-            </a>
-            <a class="btn btn-outline-secondary btn-lg px-4" href="<?= url('/contacto') ?>">
-                <i class="bi bi-envelope me-2"></i>Contactar
-            </a>
-        </div>
         <ul class="alf-chips list-inline mb-0">
             <li class="list-inline-item"><img src="<?= url('/img/tech/php.svg') ?>" alt="">PHP</li>
             <li class="list-inline-item"><img src="<?= url('/img/tech/mysql.svg') ?>" alt="">Mysql</li>
@@ -23,32 +12,32 @@
     </div>
 </section>
 
-<section class="container py-5">
+<section class="container py-4 alf-seccion-ancho">
     <div class="d-flex align-items-end justify-content-between mb-4">
-        <h2 class="alf-titulo-seccion mb-0">Últimos artículos</h2>
+        <h3 class="alf-titulo-seccion mb-0">Últimos artículos</h3>
         <a class="alf-ver-todo small" href="<?= url('/blog') ?>">
             Ver todo el blog <i class="bi bi-arrow-right ms-1"></i>
         </a>
     </div>
-    <div class="row g-4">
+    <div class="row g-2">
         <?php foreach ($posts as $post): ?>
-        <div class="col-md-6 col-lg-4">
+        <div class="col-md-6 col-lg-4 col-xl-3">
             <?php include __DIR__ . '/../blog/_tarjeta.php'; ?>
         </div>
         <?php endforeach; ?>
     </div>
 </section>
 
-<section class="container pb-5">
+<section class="container pb-4 alf-seccion-ancho">
     <div class="d-flex align-items-end justify-content-between mb-4">
-        <h2 class="alf-titulo-seccion mb-0">Proyectos destacados</h2>
+        <h3 class="alf-titulo-seccion mb-0">Proyectos destacados</h3>
         <a class="alf-ver-todo small" href="<?= url('/portafolio') ?>">
             Ver todo el portafolio <i class="bi bi-arrow-right ms-1"></i>
         </a>
     </div>
-    <div class="row g-4">
+    <div class="row g-2">
         <?php foreach ($proyectos as $proyecto): ?>
-        <div class="col-md-6 col-lg-4">
+        <div class="col-md-6 col-lg-4 col-xl-3">
             <article class="card alf-tarjeta h-100">
                 <a href="<?= url('/portafolio/' . e($proyecto['slug'])) ?>">
                     <img src="<?= e($proyecto['imagen']) ?>" class="card-img-top" alt="<?= e($proyecto['titulo']) ?>" loading="lazy">

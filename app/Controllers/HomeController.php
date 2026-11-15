@@ -19,7 +19,7 @@ final class HomeController extends Controller
 
         $posts = array_map(
             fn (array $post): array => $post + ['categoria' => $blog->categoria($post['category_id'])],
-            $blog->ultimos(3)
+            $blog->ultimos(4)
         );
 
         $proyectos = array_map(
@@ -27,7 +27,7 @@ final class HomeController extends Controller
                 'tipo' => PortfolioModel::TIPOS[$proyecto['type']],
                 'techs' => $tech->porIds($proyecto['tech']),
             ],
-            $portfolio->destacados(3)
+            $portfolio->destacados(4)
         );
 
         $this->render('home/index', [
